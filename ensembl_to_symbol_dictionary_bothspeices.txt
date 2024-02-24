@@ -49,4 +49,4 @@ while IFS=$'\t' read -r orthogroup ensembl_ids_1 ensembl_ids_2; do
     # Annotate Ensembl IDs in the third column
     appended_ids_2=$(append_gene_symbols "$ensembl_ids_2")
     echo "$appended_ids_2"
-done < Astyanax_mexicanus_GCA_023375975_1_2022_07_pep__v__Danio_rerio.GRCz11.pep.all.tsv > output_file.txt
+done < Astyanax_mexicanus_GCA_023375975_1_2022_07_pep__v__Danio_rerio.GRCz11.pep.all.tsv > Drer_Amex_Orthologs_symbols.txt
