@@ -12,7 +12,7 @@ cd /storage/hpc/group/warrenlab/users/maggsx/Workingdir/cavefish/projects/Verts_
 # Dictionary to store Ensembl Stable IDs and corresponding gene symbols
 declare -A ensembl_to_symbol
 
-# Read the annotation file and populate the dictionary
+# Read the annotation file and populate the dictionary. The file should be formatted proteinid;genesymbol 
 while IFS=';' read -r ensembl_id gene_symbol; do
     gene_symbol="${gene_symbol%(*}"  # Removing parentheses and contents
     ensembl_to_symbol["$ensembl_id"]="$gene_symbol"
