@@ -17,6 +17,7 @@ for file in ./*_CDS; do awk -F "\t" '{print $1 "\t" $4 "\t" $5 "\t" $7"___"$9}' 
 for file in ./*.bed; do cut -f4 "$file" | sort -u > tmp && mv tmp "$file".txt; done
 for file in ./*.txt; do sed -i 's/___/;/g' "$file"; done
 
+#formatting gene symbol files from last column of gff
 #make input files from that, formatted protein_id;gene 
 # Define the input files as an array
 input_files=("CDS_astyanax.bed.txt" "Daniorerio_GCF_000002035.6.gff_CDS.bed.txt" "Homosapiens_GCF_000001405.40.gff_CDS.bed.txt" "Musmusculus_GCF_000001635.27.gff_CDS.bed.txt")
