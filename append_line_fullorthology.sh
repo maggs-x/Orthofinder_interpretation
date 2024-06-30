@@ -40,4 +40,4 @@ append_lines "$1" "$2"
 
 #multiple entires in $2 and $3 are separated by commas
 
-#run cleanup if necessary 
+#run cleanup to create a last column with just orthologous symbols
