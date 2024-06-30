@@ -35,7 +35,7 @@ append_lines "$1" "$2"
 ###in this case
 #./append_lines.sh CDS_withSVins.vcf_parsing_symbolsassigned Astyanax_human_orthologs_NCBI.txt
 
-CDS_withSVins.vcf_parsing_symbolsassigned: file format stableid_genesymbol
-Astyanax_human_orthologs_NCBI.txt: file format orthogroup AmexStableID_AmexGenesymbol HsapStableID_Hsapsymbol
+#CDS_withSVins.vcf_parsing_symbolsassigned file format: stableid_genesymbol
+#Astyanax_human_orthologs_NCBI.txt file format: orthogroup AmexStableID_AmexGenesymbol HsapStableID_Hsapsymbol
 
 #multiple entires in $2 and $3 are separated by commas
