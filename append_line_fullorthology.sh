@@ -39,3 +39,5 @@ append_lines "$1" "$2"
 #Astyanax_human_orthologs_NCBI.txt file format: orthogroup AmexStableID_AmexGenesymbol HsapStableID_Hsapsymbol
 
 #multiple entires in $2 and $3 are separated by commas
+
+#run cleanup if necessary 
