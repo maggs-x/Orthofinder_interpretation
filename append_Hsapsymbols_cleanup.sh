@@ -1,7 +1,7 @@
 #!/bin/bash
 
 input_file="CDS_withSVins_humanorthologs.tsv"
-output_file="CDS_withSVins_humanorthologs_simplified.tsv"
+output_file="CDS_withSVins_humanorthologs_cleanup.tsv"
 
 # Read the input file line by line
 while IFS=$'\t' read -r -a columns; do
