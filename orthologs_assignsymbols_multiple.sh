@@ -54,7 +54,6 @@ All_species="/storage/hpc/group/warrenlab/users/maggsx/Workingdir/cavefish/proje
 
 
 #############################################################################################
-########MULTIPLE FILES NOT HARD CODED#########
 #create soft link for orthology files
 ln -s /storage/hpc/group/warrenlab/users/maggsx/Workingdir/cavefish/projects/Verts_Orthofinder/NCBI_run/outputNCBI/Results_Mar12/Orthologues/Orthologues_Amex_NCBI_GCF_023375975/Amex_NCBI_GCF_023375975__v__Danio_rerio_GCF_000002035.6.tsv
 ln -s /storage/hpc/group/warrenlab/users/maggsx/Workingdir/cavefish/projects/Verts_Orthofinder/NCBI_run/outputNCBI/Results_Mar12/Orthologues/Orthologues_Amex_NCBI_GCF_023375975/Amex_NCBI_GCF_023375975__v__Mus_musculus_GCF_000001635.27.tsv
