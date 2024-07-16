@@ -36,7 +36,8 @@ append_lines "$1" "$2"
 #./append_lines.sh CDS_withSVins.vcf_parsing_symbolsassigned Astyanax_human_orthologs_NCBI.txt
 
 #CDS_withSVins.vcf_parsing_symbolsassigned file format: stableid_genesymbol
-#Astyanax_human_orthologs_NCBI.txt file format: orthogroup AmexStableID_AmexGenesymbol HsapStableID_Hsapsymbol
+#Astyanax_human_orthologs_NCBI.txt file format: orthogroup AmexStableID_AmexGenesymbol HsapStableID_Hsapsymbol 
+#Astyanax_human_orthologs_NCBI.txt is output from orthologs_assignsymbols.sh (which uses orthofinder input)
 
 #multiple entires in $2 and $3 are separated by commas
 
