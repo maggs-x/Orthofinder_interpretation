@@ -1,6 +1,6 @@
 If you ran orthofinder with stable protein ids, you may be interested in identifying their gene symbols. The scripts in this repository do just that. 
 
-It takes as input 1) the pairwise ortholog file from orthofinder (here, Astyanax_mexicanus_GCA_023375975_1_2022_07_pep__v__Homo_sapiens.GRCh38.pep.all.tsv) and 2) a user formatted file with stableid;genesymbol for the two species in the ortholog file. Expectations of the user formatted file is that the stable id will have one underscore (e.g. stable ids are often formatted XP_049325020.1 NP_002463.2_MYH8), and stable ids and gene symbols will be separate by a semi colon. For example:
+It takes as input 1) the pairwise ortholog file from orthofinder (here, Astyanax_mexicanus_GCA_023375975_1_2022_07_pep__v__Homo_sapiens.GRCh38.pep.all.tsv) and 2) a user formatted file with stableid;genesymbol for the two species in the ortholog file. Expectations of the user formatted file is that the stable id will have one underscore (e.g. stable ids are often formatted XP_049325020.1 NP_002463.2). Stable ids and gene symbols should be separated by a semi colon. For example:
 NP_066008.2;PCDHB16
 XP_049336406.1;LOC111193356
 
