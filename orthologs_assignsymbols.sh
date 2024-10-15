@@ -53,14 +53,3 @@ done < Astyanax_mexicanus_GCA_023375975_1_2022_07_pep__v__Homo_sapiens.GRCh38.pe
 #
 #mv Hsap_Amex_Orthologs_symbols.tsv HsapAmex_orthologs_revised.tsv
 
-#this code takes the ortholog output from Orthofinder and appends gene symbols to the end of the stable ids. 
-#It takes as input the ortholog file from orthofinder and a user formated file (here, Bothspecies_annotation.txt) for the species in the orthology file (here, Astyanax_mexicanus_GCA_023375975_1_2022_07_pep__v__Homo_sapiens.GRCh38.pep.all.tsv). 
-
-#order of operations is 
-#1) orthologs_assignsymbols.sh
-#2) append_Hsapsymbols_cleanup.sh
-
-#if you want to run it on a specific list of genes instead of the entire orthology file use append_line_fullorthology.sh
-#1) orthologs_assignsymbols.sh
-#2) append_line_fullorthology.sh
-#3) append_Hsapsymbols_cleanup.sh (this creates an additional field that just has the human gene symbols)
