@@ -1,18 +1,28 @@
 #!/bin/bash
 
-input_file="CDS_withSVins_humanorthologs.tsv"
-output_file="CDS_withSVins_humanorthologs_cleanup.tsv"
+# Get the input and output file paths from command-line arguments
+input_file="$1"
+output_file="$2"
+
+# Check if input file is provided and exists
+if [ -z "$input_file" ] || [ ! -f "$input_file" ]; then
+    echo "Please provide a valid input file."
+    exit 1
+fi
+
+# Create or clear the output file
+> "$output_file"
 
 # Read the input file line by line
 while IFS=$'\t' read -r -a columns; do
-    # Extract entries from the 4rd column and split by commas
+    # Extract entries from the 4th column and split by commas
     entries=$(echo "${columns[3]}" | tr ',' '\n')
     
     # Extract gene symbols from each entry and store in a set to remove duplicates
     gene_symbols=()
     for entry in $entries; do
         # Extract gene symbol from the entry
-        gene_symbol=$(echo "$entry" | cut -d'_' -f2)
+        gene_symbol=$(echo "$entry" | cut -d'_' -f3)
         if [ ! -z "$gene_symbol" ]; then
             gene_symbols+=("$gene_symbol")
         fi
