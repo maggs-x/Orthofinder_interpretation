@@ -1,7 +1,7 @@
 append_lines() {
     local file1="$1"
     local file2="$2"
-    local output="Humanorthologs.tsv"
+    local output="$3"  # Get the output file from the third argument
 
     # Check if both input files exist
     if [ ! -f "$file1" ] || [ ! -f "$file2" ]; then
@@ -29,16 +29,16 @@ append_lines() {
     done < "$file1"
 }
 
-# Call the function with two input file paths
-append_lines "$1" "$2"
+# Call the function with two input file paths and one output file path
+append_lines "$1" "$2" "$3"
+
+
 
 ###in this case
-#./append_lines.sh CDS_withSVins.vcf_parsing_symbolsassigned Astyanax_human_orthologs_NCBI.txt
+#./append_lines.sh CDS_withSVins.vcf Astyanax_human_orthologs_NCBI.txt output
 
-#CDS_withSVins.vcf_parsing_symbolsassigned file format: stableid_genesymbol
+#CDS_withSVins.vcf file format: gene symbols for genes with SV insertions in their CDS
 #Astyanax_human_orthologs_NCBI.txt file format: orthogroup AmexStableID_AmexGenesymbol HsapStableID_Hsapsymbol 
-#Astyanax_human_orthologs_NCBI.txt is output from orthologs_assignsymbols.sh (which uses orthofinder input)
-
-#multiple entires in $2 and $3 are separated by commas
+    #This is the output from orthologs_assignsymbols.sh (which uses orthofinder input)
 
 #run cleanup to create a last column with just orthologous symbols
