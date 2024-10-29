@@ -1,7 +1,7 @@
 append_lines() {
     local file1="$1"
     local file2="$2"
-    local output="CDS_withSVdels_humanorthologs.tsv"
+    local output="Humanorthologs.tsv"
 
     # Check if both input files exist
     if [ ! -f "$file1" ] || [ ! -f "$file2" ]; then
