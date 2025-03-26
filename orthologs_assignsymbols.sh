@@ -1,38 +1,50 @@
 #!/bin/bash -e
-#SBATCH --account=warrenlab
-#SBATCH --job-name=symbol_orthos.sh
-#SBATCH --time=48:00:00
-#SBATCH --partition=BioCompute
-#SBATCH --ntasks=1
-#SBATCH --mem=10G
-#SBATCH -o pipeline.out
-#SBATCH -e pipeline.err
+#SBATCH -p general,requeue
+#SBATCH --cpus-per-task 28
+#SBATCH --mem=50G
+#SBATCH -t 10:00:00
+#SBATCH -o assignsymbols.out
+#SBATCH -e assignsymbols.err
 
-cd /storage/hpc/group/warrenlab/users/maggsx/Workingdir/cavefish/projects/Verts_Orthofinder/Ensemble_runs/assigning_symbols/Ortholog_working/Human_Amex_Orthologus
+cd /mnt/pixstor/warrenwc-lab/users/maggs/cavefish/projects/Verts_Orthofinder/NCBI_run/REDO_Mar24_2025/primary_transcripts/OrthoFinder/Results_Mar24/Orthologues/Orthologues_Astyanax_mexicanus_lt/
+
+# Enable debugging to print each command before execution
+set -x
+
 # Dictionary to store Ensembl Stable IDs and corresponding gene symbols
 declare -A ensembl_to_symbol
 
 # Read the annotation file and populate the dictionary. The file should be formatted proteinid;genesymbol 
 while IFS=';' read -r ensembl_id gene_symbol; do
-    gene_symbol="${gene_symbol%(*}"  # Removing parentheses and contents
+    ensembl_id=$(echo "$ensembl_id" | tr -d '[:space:]')  # Trim spaces
+    gene_symbol=$(echo "$gene_symbol" | tr -d '[:space:]')  # Trim spaces
+    gene_symbol="${gene_symbol%(*}"  # Remove parentheses and contents
     ensembl_to_symbol["$ensembl_id"]="$gene_symbol"
-done < Bothspecies_annotation.txt
+done < Both_humanandamex_annotation.txt
+
+
 
 # Function to append gene symbols to Ensembl IDs in a cell
 append_gene_symbols() {
     local ids=$1
     local appended_ids=""
-    IFS=', ' read -r -a ensembl_array <<< "$ids"
+    IFS=',' read -r -a ensembl_array <<< "$ids"  # Corrected IFS to avoid issues with spaces
     for ((i=0; i<${#ensembl_array[@]}; i++)); do
         ensembl_id="${ensembl_array[i]}"
+        ensembl_id=$(echo "$ensembl_id" | tr -d '[:space:]')  # Ensure no leading/trailing spaces
         gene_symbol="${ensembl_to_symbol[$ensembl_id]}"
+        
+        # Debugging statement to check if gene_symbol is being found
+        echo "DEBUG: Looking up '$ensembl_id', found: '${ensembl_to_symbol[$ensembl_id]}'" >&2
+
         if [ -n "$gene_symbol" ]; then
-            appended_ids+="${ensembl_id}_${gene_symbol}"  # Append gene symbol to Ensembl ID
+            appended_ids+="${ensembl_id}_${gene_symbol}"
         else
-            appended_ids+="${ensembl_id}"  # Ensembl ID only if gene symbol not found
+            appended_ids+="${ensembl_id}"
         fi
+
         if [ $i -lt $((${#ensembl_array[@]} - 1)) ]; then
-            appended_ids+=", "  # Add comma and space unless it's the last element
+            appended_ids+=","
         fi
     done
     echo "$appended_ids"
@@ -48,8 +60,5 @@ while IFS=$'\t' read -r orthogroup ensembl_ids_1 ensembl_ids_2; do
     # Annotate Ensembl IDs in the third column
     appended_ids_2=$(append_gene_symbols "$ensembl_ids_2")
     echo "$appended_ids_2"
-done < Astyanax_mexicanus_GCA_023375975_1_2022_07_pep__v__Homo_sapiens.GRCh38.pep.all.tsv > Hsap_Amex_Orthologs_symbols.tsv
-
-#
-#mv Hsap_Amex_Orthologs_symbols.tsv HsapAmex_orthologs_revised.tsv
+done < Astyanax_mexicanus_lt__v__Homosapiens_GRCh38.p14_lt.tsv > Hsap_Amex_Orthologs_symbols.tsv
 
