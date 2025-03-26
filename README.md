@@ -6,8 +6,8 @@ NP_066008.2;PCDHB16
 
 Script descriptions:
 1) orthologs_assignsymbols.sh : This script will append stable ids in the pairwise orthology file from Orthofinder with gene symbols. The output will retain original formatting but stable ids will be appended with gene symbol (stableid_genesymbol). 
-2) append_Hsapsymbols_cleanup.sh : If you're interested in pulling just the gene symbols for the second species in the comparison (in this case, human) use this script. It will create a new column in the file with just the 'human' symbols. 
-3) append_line_fullorthology.sh : If you have a list of genes that you'd like to know the orthologs for use this script. It will append the output from the above two scripts to the corresponding genes in your list. 
+2) appendsymbols_cleanup.sh : If you're interested in pulling just the gene symbols for the second species in the comparison use this script. It will create a new column in the file with just the 'second species' symbols. For example, if you ran orthologs_assignsymbols on the OrthoFinder ortholog file containing asytanax and human orthologs, appendsymbols_cleanup.sh will extract all of the human symbols in the third column (stableID_symbol), and add just hte symbols to a new fourth column. 
+3) append_line_fullorthology.sh : If you have a pre-set list of gene symbols that you'd like to know the orthologs for use this script. Use the table created by orthologs_assignsymbols.sh as input + your list of candidate genes.  
 4) orthologs_assignsymbols_multiple.sh : use this script to assign symbols to multiple pairwise orthology files
 
 Note: input file names must be changed to work on your files. 
