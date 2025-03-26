@@ -35,4 +35,4 @@ while IFS=$'\t' read -r -a columns; do
     echo -e "$(IFS=$'\t'; echo "${columns[*]:0:4}")\t$unique_gene_symbols"
 done < "$input_file" > "$output_file"
 
-#tab delimited file as input. Last column (column 4) has stableid_genesymbol,stableid_genesymbol separate by commas. This script takes the gene symbols in the last column, puts them into a 5th column and removes duplicate symbols (e.g. multiple transcripts have same symbol). Useful for generating a list ot input in IPA or functional enrichment where you want human orthologs for a list of non-model genes
+
